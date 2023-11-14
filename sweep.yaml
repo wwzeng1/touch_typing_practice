@@ -7,7 +7,7 @@ rules:
   - "Code should not contain commented out code blocks."
   - "Variable and function names should be descriptive and follow a consistent naming convention."
   - "Avoid redundant or unused imports and variables."
-  - "Leftover TODOs in the code should be handled."
+  - "We import all modules using absolute imports."
   - "All new business logic should have corresponding unit tests in the tests/ directory."
   - "For unit tests we use pytest. If we have class.py, we should have class_test.py in the tests directory."
   - "Any clearly inefficient or repeated code should be optimized or refactored."
