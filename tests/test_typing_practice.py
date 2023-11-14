@@ -49,5 +49,3 @@ class TestTypingPractice(unittest.TestCase):
         user.get_statistics = Mock(return_value="statistics")
         self.assertEqual(tp.get_user_statistics(), "statistics")
 
-if __name__ == '__main__':
-    unittest.main()
