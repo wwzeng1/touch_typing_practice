@@ -1,0 +1,28 @@
+
+    classDiagram
+        class User{
+            +str username
+            +dict history
+            +init(username: str)
+            +record_session(session: Session)
+            +get_statistics(): dict
+        }
+        class Session{
+            +str text
+            +datetime start_time
+            +datetime end_time
+            +init(text: str)
+            +start()
+            +end()
+            +calculate_statistics(): dict
+        }
+        class TypingPractice{
+            +User user
+            +init(user: User)
+            +start_session(text: str)
+            +end_session()
+            +get_user_statistics(): dict
+        }
+        User -- TypingPractice: uses
+        Session -- TypingPractice: uses
+    

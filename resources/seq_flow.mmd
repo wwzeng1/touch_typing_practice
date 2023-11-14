@@ -1,0 +1,12 @@
+
+    sequenceDiagram
+        participant U as User
+        participant TP as TypingPractice
+        participant S as Session
+        TP->>U: init(user)
+        TP->>S: start_session(text)
+        S->>S: start()
+        S->>S: end()
+        TP->>U: record_session(session)
+        TP->>U: get_user_statistics()
+    
