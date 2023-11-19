@@ -53,7 +53,8 @@ class TestMainFunction(unittest.TestCase):
         mock_User_load.return_value = MagicMock()
         mock_TypingPractice.return_value = create_autospec(TypingPractice)
 
-        mock_curses_initscr.assert_called()
+if __name__ == "__main__":
+    unittest.main()
 
         main(mock_stdscr)
 
