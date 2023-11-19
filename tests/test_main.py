@@ -6,7 +6,7 @@ from touch_typing_practice.main import main
 
 class TestMainFunction(unittest.TestCase):
 
-@patch("touch_typing_practice.main.User.load")
+    @patch("touch_typing_practice.main.User.load")
     @patch("touch_typing_practice.main.TypingPractice")
     def setUp(self, mock_typing_practice, mock_user_load):
         self.mock_stdscr = MagicMock()
@@ -28,7 +28,7 @@ class TestMainFunction(unittest.TestCase):
             "mock_time": {"wpm": 50, "accuracy": 90}
         }
 
-def test_main(self):
+    def test_main(self):
         main(self.mock_stdscr)
 
     @unittest.skip("========================= 1 failed, 16 passed in 1.13s =========================")
@@ -52,12 +52,22 @@ def test_main(self):
         self.mock_typing_practice.return_value = MagicMock()
         self.mock_typing_practice.return_value.get_user_statistics.return_value = {"mock_time": {"wpm": 50, "accuracy": 90}}
 
-    def test_main(self):
+    def test_main(self, mock_stdscr):
+        main(mock_stdscr)
+        mock_stdscr.clear.assert_called_once()
+        self.mock_typing_practice.return_value.start_session.assert_called_once_with(b"mock_text")
+        self.mock_typing_practice.return_value.end_session.assert_called_once_with(b"mock_typed_text")
+
+    ================== 1 failed, 16 passed in 1.13s =========================")
+    def tearDown(self):
+        pass
+    =======
+    def tearDown(self):
+        pass
         main(self.mock_stdscr)
         self.mock_stdscr.clear.assert_called_once()
         self.mock_typing_practice.return_value.start_session.assert_called_once_with(b"mock_text")
         self.mock_typing_practice.return_value.end_session.assert_called_once_with(b"mock_typed_text")
-
     def tearDown(self):
         pass
 
