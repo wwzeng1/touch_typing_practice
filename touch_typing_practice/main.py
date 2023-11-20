@@ -7,6 +7,7 @@ from touch_typing_practice.user import User
 
 def main(stdscr):
     # Clear screen
+    stdscr = curses.initscr()
     stdscr.clear()
     curses.echo()
     print("Enter your username: \n\r")
