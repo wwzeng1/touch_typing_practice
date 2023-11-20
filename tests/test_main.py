@@ -8,10 +8,11 @@ class TestMainFunction(unittest.TestCase):
     @unittest.skip(
         "========================= 1 failed, 16 passed in 1.24s ========================="
     )
+    @patch("touch_typing_practice.main.curses.initscr")
     @patch("touch_typing_practice.main.curses.echo")
     @patch("touch_typing_practice.main.User.load")
     @patch("touch_typing_practice.main.TypingPractice")
-    def test_main(self, mock_TypingPractice, mock_User_load, mock_curses_echo):
+    def test_main(self, mock_TypingPractice, mock_User_load, mock_curses_echo, mock_curses_initscr):
         mock_stdscr = MagicMock()
         mock_stdscr.getstr.side_effect = [
             b"username",
@@ -51,6 +52,7 @@ class TestMainFunction(unittest.TestCase):
         ]
         mock_User_load.return_value = MagicMock()
         mock_TypingPractice.return_value = create_autospec(TypingPractice)
+        mock_curses_initscr.assert_called()
 
         main(mock_stdscr)
 
@@ -68,4 +70,5 @@ class TestMainFunction(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+        mock_curses_initscr.assert_called()
 
