@@ -9,7 +9,7 @@ def main(stdscr):
     # Clear screen
     # stdscr = curses.initscr()  # Removed as it's not needed with curses.wrapper()
     stdscr.clear()
-    curses.echo()
+    # Removed as it's not needed with curses.wrapper()
     print("Enter your username: \n\r")
     username = stdscr.getstr(0, 0, 15)
     user = User.load(username)
