@@ -71,5 +71,4 @@ class TestMainFunction(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-        mock_curses_initscr.assert_called()
 
