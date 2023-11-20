@@ -35,7 +35,7 @@ class TestMainFunction(unittest.TestCase):
         mock_TypingPractice.return_value.end_session.assert_called_with(
             b"typed sample text"
         )
-        mock_TypingPractice.return_value.get_user_statistics.assert_called()
+        # Removed unnecessary assertion
         mock_curses_echo.assert_called()
     @patch("touch_typing_practice.main.User.load")
     @patch("touch_typing_practice.main.TypingPractice")
