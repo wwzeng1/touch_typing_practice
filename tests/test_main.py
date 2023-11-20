@@ -8,7 +8,7 @@ class TestMainFunction(unittest.TestCase):
     @unittest.skip(
         "========================= 1 failed, 16 passed in 1.24s ========================="
     )
-    @patch("touch_typing_practice.main.curses.initscr")
+    @patch("touch_typing_practice.main.curses.initscr", return_value=MagicMock())
     @patch("touch_typing_practice.main.curses.echo")
     @patch("touch_typing_practice.main.User.load")
     @patch("touch_typing_practice.main.TypingPractice")
@@ -52,6 +52,7 @@ class TestMainFunction(unittest.TestCase):
         mock_User_load.return_value = MagicMock()
         mock_TypingPractice.return_value = create_autospec(TypingPractice)
 
+        main(mock_stdscr)
         main(mock_stdscr)
 
         mock_stdscr.clear.assert_called()
