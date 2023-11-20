@@ -5,12 +5,7 @@ from touch_typing_practice.user import User
 
 def main(stdscr):
     # Clear screen
-    stdscr.clear()
-    curses.echo()
-    print("Enter your username: \n\r")
-    username = stdscr.getstr(0,0,15)
-    user = User.load(username)
-    typing_practice = TypingPractice(user)
+    typing_practice = initialize_user_session(stdscr)
 
     while True:
         print("1. Start new session\r")
@@ -23,23 +18,39 @@ def main(stdscr):
             continue
 
         if choice == 1:
-            print("Enter text for the session: ")
-            text = stdscr.getstr(0, 0, 100)
-            typing_practice.start_session(text)
-            print("Start typing: ")
-            typed_text = stdscr.getstr(0, 0, 100)
-            typing_practice.end_session(typed_text)
-            print("Session ended. Your progress has been recorded.")
+            conduct_typing_session(stdscr, typing_practice)
         elif choice == 2:
-            statistics = typing_practice.get_user_statistics()
-            for session_time, session_statistics in statistics.items():
-                print(f"Session at {session_time}:")
-                for stat, value in session_statistics.items():
-                    print(f"  {stat}: {value}")
+            display_user_statistics(typing_practice)
         elif choice == 3:
             break
         else:
             print("Invalid choice. Please try again.")
+
+def initialize_user_session(stdscr):
+    # Clear screen
+    stdscr.clear()
+    curses.echo()
+    print("Enter your username: \n\r")
+    username = stdscr.getstr(0,0,15)
+    user = User.load(username)
+    typing_practice = TypingPractice(user)
+    return typing_practice
+
+def conduct_typing_session(stdscr, typing_practice):
+    print("Enter text for the session: ")
+    text = stdscr.getstr(0, 0, 100)
+    typing_practice.start_session(text)
+    print("Start typing: ")
+    typed_text = stdscr.getstr(0, 0, 100)
+    typing_practice.end_session(typed_text)
+    print("Session ended. Your progress has been recorded.")
+
+def display_user_statistics(typing_practice):
+    statistics = typing_practice.get_user_statistics()
+    for session_time, session_statistics in statistics.items():
+        print(f"Session at {session_time}:")
+        for stat, value in session_statistics.items():
+            print(f"  {stat}: {value}")
 
 if __name__ == "__main__":
     curses.wrapper(main)
