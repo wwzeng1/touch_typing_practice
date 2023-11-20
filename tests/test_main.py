@@ -26,6 +26,7 @@ class TestMainFunction(unittest.TestCase):
 
         main(mock_stdscr)
 
+        mock_curses_initscr.assert_called()
         mock_stdscr.clear.assert_called()
         mock_User_load.assert_called_with(b"username")
         mock_TypingPractice.assert_called()
@@ -54,8 +55,7 @@ class TestMainFunction(unittest.TestCase):
         mock_TypingPractice.return_value = create_autospec(TypingPractice)
         mock_curses_initscr.assert_called()
 
-        main(mock_stdscr)
-
+        mock_curses_initscr.assert_called()
         mock_stdscr.clear.assert_called()
         mock_User_load.assert_called_with(b"username")
         mock_TypingPractice.assert_called()
