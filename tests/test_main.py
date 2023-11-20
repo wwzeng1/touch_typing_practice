@@ -37,6 +37,7 @@ class TestMainFunction(unittest.TestCase):
         )
         mock_TypingPractice.return_value.get_user_statistics.assert_called()
         mock_curses_echo.assert_called()
+        mock_curses_initscr.assert_called()
 
     @patch("touch_typing_practice.main.User.load")
     @patch("touch_typing_practice.main.TypingPractice")
@@ -70,5 +71,4 @@ class TestMainFunction(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-        mock_curses_initscr.assert_called()
 
